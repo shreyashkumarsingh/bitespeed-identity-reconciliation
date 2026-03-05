@@ -6,7 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ContactService = void 0;
 const connection_1 = __importDefault(require("../database/connection"));
 class ContactService {
+    constructor() {
+        this.schemaEnsured = false;
+    }
     async identify(email, phoneNumber) {
+        await this.ensureSchema();
         // Find all contacts matching email or phoneNumber
         const query = `
       SELECT * FROM "Contact" 
@@ -130,6 +134,25 @@ class ContactService {
                 secondaryContactIds,
             },
         };
+    }
+    async ensureSchema() {
+        if (this.schemaEnsured) {
+            return;
+        }
+        await connection_1.default.query(`
+      CREATE TABLE IF NOT EXISTS "Contact" (
+        id SERIAL PRIMARY KEY,
+        "phoneNumber" VARCHAR,
+        email VARCHAR,
+        "linkedId" INTEGER,
+        "linkPrecedence" VARCHAR(10) NOT NULL CHECK ("linkPrecedence" IN ('primary', 'secondary')),
+        "createdAt" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+        "updatedAt" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+        "deletedAt" TIMESTAMP WITH TIME ZONE,
+        CONSTRAINT fk_linkedId FOREIGN KEY("linkedId") REFERENCES "Contact"(id)
+      );
+    `);
+        this.schemaEnsured = true;
     }
 }
 exports.ContactService = ContactService;

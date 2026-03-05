@@ -17,11 +17,13 @@ export interface IdentifyResponse {
     };
 }
 export declare class ContactService {
+    private schemaEnsured;
     identify(email: string | null, phoneNumber: string | null): Promise<IdentifyResponse>;
     private findPrimaryContact;
     private getAllLinkedContacts;
     private createNewPrimaryContact;
     private createSecondaryContact;
     private buildResponse;
+    private ensureSchema;
 }
 //# sourceMappingURL=ContactService.d.ts.map
