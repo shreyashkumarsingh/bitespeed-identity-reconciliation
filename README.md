@@ -151,7 +151,30 @@ npm start
 
 ## Live Endpoint
 
-**Base URL**: [To be updated after deployment]
+**Base URL**: https://bitespeed-reconcile-2026.onrender.com
+
+**Example Request:**
+```bash
+POST https://bitespeed-reconcile-2026.onrender.com/identify
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "phoneNumber": "1234567890"
+}
+```
+
+**Example Response:**
+```json
+{
+  "contact": {
+    "primaryContatctId": 1,
+    "emails": ["user@example.com"],
+    "phoneNumbers": ["1234567890"],
+    "secondaryContactIds": []
+  }
+}
+```
 
 ## Git Commits
 
