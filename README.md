@@ -2,6 +2,12 @@
 
 A Node.js backend service that identifies and reconciles customer identities across multiple purchases by linking different contact information (email and phone numbers) to the same person.
 
+## 🚀 Quick Start
+
+**New to this project?** Start with [QUICKSTART.md](QUICKSTART.md) for setup instructions.
+
+**Ready to deploy?** Follow [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment steps.
+
 ## Overview
 
 This service implements the Bitespeed identity reconciliation logic as specified in the task requirements. It maintains a database of contacts and links them based on shared email addresses or phone numbers.
