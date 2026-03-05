@@ -40,7 +40,10 @@ npm run setup
 Follow the interactive prompts!
 
 **Option 2: Manual**
-1. Get free PostgreSQL (Neon.tech or ElephantSQL)
+1. Get free PostgreSQL:
+   - **RECOMMENDED:** Supabase.com (easiest)
+   - OR Railway.app (fast)
+   - OR create in Render directly (simplest)
 2. Deploy to Render.com with your GitHub repo
 3. Set DATABASE_URL environment variable
 4. Run: `npm run migrate` in Render Shell

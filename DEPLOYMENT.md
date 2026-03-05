@@ -53,27 +53,60 @@ Branch 'main' set up to track remote branch 'main' from 'origin'.
 
 ## Step 2: Create Free PostgreSQL Database
 
-### Option A: Using Neon (Recommended)
+### Option A: Using Supabase (Recommended - Free & Easy)
 
-1. Go to [https://neon.tech](https://neon.tech)
+1. Go to [https://supabase.com](https://supabase.com)
 2. Click **"Sign Up"** and create an account
-3. Create a new project
-4. Click on your project and find the **"Connection string"** tab
-5. Copy the connection string that looks like:
+3. Create a new project:
+   - Name: `bitespeed` (or any name)
+   - Region: Choose closest to you
+   - Database Password: Create strong password
+4. Wait for database to initialize (1-2 minutes)
+5. Go to **Settings** → **Database**
+6. Copy the connection string (URI) that looks like:
    ```
-   postgresql://user:password@neon.tech/dbname
+   postgresql://postgres:PASSWORD@host:5432/postgres
    ```
-6. **Save this somewhere safe** - you'll need it for Render
-
-### Option B: Using ElephantSQL
-
-1. Go to [https://www.elephantsql.com](https://www.elephantsql.com)
-2. Click **"Get Started"** for free tier
-3. Create an account and log in
-4. Click **"Create New Instance"**
-5. Choose free tier and create
-6. Copy the **PostgreSQL URL** from the dashboard
 7. **Save this somewhere safe** - you'll need it for Render
+
+### Option B: Using Railway (Simple & Fast)
+
+1. Go to [https://railway.app](https://railway.app)
+2. Sign up with GitHub
+3. Create new project → **"Provision PostgreSQL"**
+4. Wait for database to spin up (30 seconds)
+5. Click on the PostgreSQL plugin
+6. Go to **"Connect"** tab
+7. Copy the **Database URL** (PostgreSQL connection string)
+8. **Save this somewhere safe** - you'll need it for Render
+
+### Option C: Using Render's Built-in Database (Simplest)
+
+1. You can create PostgreSQL directly in Render when setting up your service
+2. In Render dashboard → Create Web Service
+3. After creating the service, go to **"Data"** tab
+4. Click **"New PostgreSQL"**
+5. Create a free tier database
+6. Render will automatically set the DATABASE_URL for you
+7. **No separate setup needed!** (Easiest option)
+
+### Option D: Using AWS RDS Free Tier
+
+1. Go to [https://aws.amazon.com](https://aws.amazon.com)
+2. Create free account
+3. Go to RDS service → Create Database
+4. Choose PostgreSQL and Free tier
+5. Create the database
+6. Go to connectivity & security to get connection string
+7. **Save this somewhere safe** - you'll need it for Render
+
+---
+
+**⚡ FASTEST OPTION:** Use **Option C (Render's built-in database)** - It's the quickest, just one setup in Render!
+
+**✅ MOST RELIABLE:** Use **Option A (Supabase)** - Best free tier with good support
+
+**🚀 EASIEST:** Use **Option B (Railway)** - Simple setup, very fast
 
 ---
 
