@@ -9,6 +9,10 @@ const contactService = new ContactService();
 
 app.use(express.json());
 
+app.get('/healthz', (_req: Request, res: Response) => {
+  res.status(200).json({ status: 'ok' });
+});
+
 interface IdentifyRequest {
   email?: string | null;
   phoneNumber?: string | null;
