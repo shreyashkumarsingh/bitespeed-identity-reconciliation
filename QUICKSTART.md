@@ -21,7 +21,7 @@ Your Bitespeed Identity Reconciliation backend is ready! Here's what to do next:
 # Name it: bitespeed-identity-reconciliation
 
 # Then run these commands:
-git remote add origin https://github.com/YOUR_USERNAME/bitespeed-identity-reconciliation.git
+git remote set-url origin https://github.com/shreyashkumarsingh/bitespeed-identity-reconciliation.git
 git branch -M main
 git push -u origin main
 ```

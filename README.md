@@ -39,7 +39,7 @@ This service implements the Bitespeed identity reconciliation logic as specified
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/bitespeed-identity-reconciliation.git
+git clone https://github.com/shreyashkumarsingh/bitespeed-identity-reconciliation.git
 cd bitespeed-identity-reconciliation
 ```
 

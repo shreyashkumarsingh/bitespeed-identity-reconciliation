@@ -6,7 +6,7 @@ This guide walks you through deploying the Bitespeed Identity Reconciliation API
 
 - GitHub account (https://github.com)
 - Render.com account (https://render.com)
-- Neon or ElephantSQL account for free PostgreSQL
+- Supabase account (https://supabase.com) for free PostgreSQL
 
 ## Step 1: Push Code to GitHub
 
@@ -28,8 +28,8 @@ After creating the repo, you'll see instructions. Run these commands in your pro
 ```powershell
 cd c:\Users\KIIT0001\Desktop\project
 
-# Add remote (replace YOUR_USERNAME with your GitHub username)
-git remote add origin https://github.com/YOUR_USERNAME/bitespeed-identity-reconciliation.git
+# Ensure remote points to your repository
+git remote set-url origin https://github.com/shreyashkumarsingh/bitespeed-identity-reconciliation.git
 
 # Rename branch to main
 git branch -M main
