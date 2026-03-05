@@ -2,38 +2,32 @@
 
 A Node.js backend service that identifies and reconciles customer identities across multiple purchases by linking different contact information (email and phone numbers) to the same person.
 
-## 🚀 Quick Start
-
-**New to this project?** Start with [QUICKSTART.md](QUICKSTART.md) for setup instructions.
-
-**Ready to deploy?** Follow [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment steps.
-
 ## Overview
 
-This service implements the Bitespeed identity reconciliation logic as specified in the task requirements. It maintains a database of contacts and links them based on shared email addresses or phone numbers.
+This service implements the Bitespeed identity reconciliation logic. It maintains a database of contacts and links them based on shared email addresses or phone numbers.
 
 ## Features
 
-- **Identity Linking**: Automatically links contacts that share email or phone numbers
-- **Primary/Secondary Contacts**: Maintains oldest contact as primary with newer contacts as secondary
-- **Contact Hierarchy**: Supports recursive linking of contacts
-- **RESTful API**: Simple POST endpoint for identity identification
+- Identity linking by email or phone number
+- Primary/secondary contact model with oldest as primary
+- Recursive contact hierarchy support
+- RESTful API with /identify endpoint
 
 ## Technology Stack
 
-- **Runtime**: Node.js
-- **Language**: TypeScript
-- **Framework**: Express.js
-- **Database**: PostgreSQL
-- **ORM/Query**: Native pg library
+- Runtime: Node.js
+- Language: TypeScript
+- Framework: Express.js
+- Database: PostgreSQL
+- Query: Native pg library
 
-## Setup Instructions
+## Setup
 
 ### Prerequisites
 
 - Node.js (v14 or higher)
 - PostgreSQL (v10 or higher)
-- npm or yarn
+- npm
 
 ### Installation
 
@@ -49,33 +43,30 @@ npm install
 ```
 
 3. Set up environment variables:
-Create a `.env` file in the root directory:
 ```
-DATABASE_URL=postgresql://user:password@localhost:5432/bitespeed
+DATABASE_URL=postgresql://user:password@host:5432/bitespeed
 NODE_ENV=development
 PORT=3000
 ```
 
-4. Run database migrations:
+4. Build and run migrations:
 ```bash
 npm run build
 npm run migrate
 ```
 
-5. Start the server:
+5. Start development server:
 ```bash
 npm run dev
 ```
 
-The server will start on `http://localhost:3000`
+The server will start on http://localhost:3000
 
 ## API Documentation
 
-### Identify Endpoint
+### Endpoint: POST /identify
 
-**Endpoint**: `POST /identify`
-
-**Request Body**:
+Request body:
 ```json
 {
   "email": "user@example.com",
@@ -83,9 +74,9 @@ The server will start on `http://localhost:3000`
 }
 ```
 
-Note: At least one of `email` or `phoneNumber` must be provided.
+Note: At least one of email or phoneNumber must be provided.
 
-**Response**:
+Response:
 ```json
 {
   "contact": {
@@ -97,17 +88,15 @@ Note: At least one of `email` or `phoneNumber` must be provided.
 }
 ```
 
-### Response Fields
-
-- `primaryContatctId`: The ID of the primary contact in the link hierarchy
-- `emails`: Array of all emails linked to this contact (primary email first)
-- `phoneNumbers`: Array of all phone numbers linked to this contact (primary phone first)
-- `secondaryContactIds`: Array of IDs for all secondary contacts
+Response fields:
+- primaryContatctId: ID of the primary contact
+- emails: All emails linked to this contact (primary first)
+- phoneNumbers: All phone numbers linked to this contact (primary first)
+- secondaryContactIds: IDs of all secondary contacts
 
 ## Database Schema
 
-### Contact Table
-
+Contact table:
 ```sql
 CREATE TABLE "Contact" (
   id SERIAL PRIMARY KEY,
@@ -122,38 +111,11 @@ CREATE TABLE "Contact" (
 );
 ```
 
-## Logic Details
-
-### How Identification Works
-
-1. **New Request**: When a request comes with email/phoneNumber combination:
-   - Search for existing contacts with matching email or phoneNumber
-
-2. **No Match**: If no matching contacts exist:
-   - Create a new contact with `linkPrecedence = 'primary'`
-   - Return the new contact
-
-3. **Match Found**: If matching contact(s) found:
-   - Identify the oldest (primary) contact
-   - If new info is provided, create secondary contact linked to primary
-   - Return consolidated contact information
-
-4. **Primary Conversion**: When a newer primary contacts shares info with an older one:
-   - The newer primary becomes secondary
-   - The older contact remains primary
-
-## Building for Production
-
-```bash
-npm run build
-npm start
-```
-
 ## Live Endpoint
 
-**Base URL**: https://bitespeed-reconcile-2026.onrender.com
+Base URL: https://bitespeed-reconcile-2026.onrender.com
 
-**Example Request:**
+Example request:
 ```bash
 POST https://bitespeed-reconcile-2026.onrender.com/identify
 Content-Type: application/json
@@ -164,7 +126,7 @@ Content-Type: application/json
 }
 ```
 
-**Example Response:**
+Example response:
 ```json
 {
   "contact": {
@@ -176,25 +138,6 @@ Content-Type: application/json
 }
 ```
 
-## Git Commits
+## Repository
 
-The repository uses small, insightful commits for each feature and fix.
-
-View commit history:
-```bash
-git log --oneline
-```
-
-## Deployment
-
-This application is ready to deploy on platforms like:
-- Render.com
-- Railway
-- Heroku
-- AWS
-
-[Deployment URL will be added here after deployment]
-
-## Author
-
-Created as part of the Bitespeed Backend Task.
+GitHub: https://github.com/shreyashkumarsingh/bitespeed-identity-reconciliation
